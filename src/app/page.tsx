@@ -1,8 +1,6 @@
-import { getServerSession } from "next-auth";
+import AuthButtons from "@/components/AuthButtons";
 
-export default async function Home() {
-
-  const session = await getServerSession();
+export default function Home() {
   
   return <>
   <div>
@@ -11,11 +9,7 @@ export default async function Home() {
       This is a landing page for the ai interview platform.
     </p>
 
-    {session && (
-      <p>
-        You are signed in as {session?.user?.email}
-      </p>
-    )}
+    <AuthButtons />
 
   </div>
   </>
