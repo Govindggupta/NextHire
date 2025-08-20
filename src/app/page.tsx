@@ -1,16 +1,21 @@
-import AuthButtons from "@/components/AuthButtons";
+"use client"
+
+import { useSession } from "next-auth/react"
 
 export default function Home() {
-  
-  return <>
-  <div>
-    <h1 className="text-3xl font-bold flex justify-center items-center min-h-screen min-w-screen">Landing page</h1>
-    <p>
-      This is a landing page for the ai interview platform.
-    </p>
-
-    <AuthButtons />
-
-  </div>
-  </>
+  const { data: session } = useSession()
+  console.log(session)
+  return (
+    <>
+    <div>
+      <div>
+        {session?.user?.name}
+      </div>
+      <div>
+        <img src={session?.user?.image as string} alt="user avatar" />
+      </div>
+      Hello world!!
+    </div>
+    </>
+  )
 }
