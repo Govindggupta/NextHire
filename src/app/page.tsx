@@ -1,10 +1,13 @@
 "use client"
 
-import { useSession } from "next-auth/react"
+import { Button } from "@/components/ui/button"
+import { useSession, signOut, signIn } from "next-auth/react"
+import { useRouter } from "next/navigation"
+
 
 export default function Home() {
   const { data: session } = useSession()
-  console.log(session)
+  const router = useRouter()
   return (
     <>
     <div>
@@ -12,8 +15,14 @@ export default function Home() {
         {session?.user?.name}
       </div>
       <div>
-        <img src={session?.user?.image as string} alt="user avatar" />
+        {session?.user?.email}
       </div>
+      {session && (
+        <Button onClick={() => signOut()}>signOut</Button>
+      )}
+      {!session && (
+        <Button onClick={() => router.push("/login")}>signIn</Button>
+      )}
       Hello world!!
     </div>
     </>
