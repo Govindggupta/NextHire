@@ -1,6 +1,7 @@
 "use client"
 
 import { Button } from "@/components/ui/button"
+import { ModeToggle } from "@/components/ui/themetogle"
 import { useSession, signOut, signIn } from "next-auth/react"
 import { useRouter } from "next/navigation"
 
@@ -24,6 +25,8 @@ export default function Home() {
         <Button onClick={() => router.push("/login")}>signIn</Button>
       )}
       Hello world!!
+
+      <ModeToggle />
     </div>
     </>
   )
